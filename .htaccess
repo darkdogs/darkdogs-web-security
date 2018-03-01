@@ -1,0 +1,22 @@
+# Protect the htaccess file
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Protect the config file
+<Files config.php>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Protect the security file
+<Files project-security.php>
+Order Allow,Deny
+Deny from all
+</Files>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
